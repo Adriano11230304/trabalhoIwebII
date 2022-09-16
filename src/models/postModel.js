@@ -1,0 +1,1 @@
+const db = require('../persistencia/configDB');

@@ -1,6 +1,6 @@
 const postModel = require('../models/postModel');
 
-module.exports = class PostController{
+class PostController{
 
     listAll(req, res){
         console.log('todos Posts');
@@ -8,3 +8,5 @@ module.exports = class PostController{
     }
     
 };
+
+module.exports = PostController;
