@@ -1,10 +1,13 @@
-const postModel = require('../models/postModel');
+const post = require('../models/post');
 
 class PostController{
 
-    listAll(req, res){
-        console.log('todos Posts');
-        res.render('posts');
+    async listAll(req, res){
+        const posts = await post.listAll();
+        console.log('teste2');
+        console.log(posts);
+        res.end('finalizado');
+        // res.render('posts');
     }
     
 };
