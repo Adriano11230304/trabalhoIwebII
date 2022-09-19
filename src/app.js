@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const postRouter = require('./routes/posts');
+const postRouter = require('./routes/postsRoutes');
 
 const app = express();
 

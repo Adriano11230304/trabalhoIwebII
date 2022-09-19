@@ -1,29 +1,24 @@
 <%- include('./components/header.ejs')%>
 
 <div class="container">
-    <h3 class="h3">Sistema Desenvolvido por Adriano Alvarenga Pereira</h3>
-    <br/>
     <%if(posts.length == 0){%>
         <h3>Nenhum Post adicionado!</h3>
     <%}else{%>
         <%for(let i = 0; i < posts.length; i++){%>
             <%if(i < 6){%>
-                <h3>Post <%=posts[i].id%>
-                </h3>
-                <h4>Data de criação: 
-                        <%=posts[i].created_at.getDate()+1%>/<%=posts[i].created_at.getMonth()+1%>/<%=posts[i].created_at.getFullYear()%>
-                </h4>
-                <h4>Título: <%=posts[i].title%>
-                </h4>
-                <a class="btn btn-outline-primary" href="/posts/update/<%=posts.id%>">Alterar</a>
-                <a class="btn btn-outline-danger" href="/posts/delete/<%=posts.id%>">Excluir</a>
+                <hr class="border border-primary border-2 opacity-50">
+                <h6><%=date[i]%></h6>
+                <hr class="border border-primary border-2 opacity-50">
+                <h3><%=posts[i].title%></h3>
+                <h4><%=posts[i].description%></h4>
+                <a class="btn btn-outline-primary m-2" href="/posts/update/<%=posts.id%>">Alterar</a>
+                <a class="btn btn-outline-danger m-2" href="/posts/delete/<%=posts.id%>">Excluir</a>
             <%}%>
-            
         <%}%>
     <%}%>
     <br/>
-    <br/>
-    <a class="btn btn-outline-success" href="/posts/add-post">Adicionar um novo Post</a>
+    <a class="btn btn-outline-success m-2" href="/posts/add-post">Adicionar um novo Post</a>
 </div>
+<p class="text-lg-right m-3">Sistema Desenvolvido por Adriano Alvarenga Pereira</p>
 
 <%- include('./components/footer.ejs')%>
