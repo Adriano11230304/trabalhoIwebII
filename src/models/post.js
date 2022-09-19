@@ -44,6 +44,22 @@ class Post{
         })
     }
 
+    static getById(id){
+        let sql = 'select * from posts where id = ?;';
+        return new Promise((resolve, reject) => {
+            db.all(sql, [id], (err, rows)=> {
+                if(err){
+                    console.log('Erro', err);
+                }else{
+                    const post = rows[0];
+                    
+                    resolve(post);
+                }
+                
+            })
+        })
+    }
+
     getDateFormatter(){
         const dia = this.created_at.getDate();
         const months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
@@ -65,6 +81,29 @@ class Post{
 
             callback();
         });
+    }
+
+    static delete(id, callback){
+        let sql = 'delete from posts where id = ?;';
+        db.run(sql, [id], (err)=> {
+            if(err){
+                console.log("Erro", err);
+            }
+
+            callback();
+        });
+    }
+
+    update(callback){
+        let sql = 'UPDATE posts SET title = ?, description = ?, updated_at = ? WHERE id = ?;';
+        db.run(sql, [this.title, this.description, this.updated_at, this.id], (err) => {
+            if (err) {
+                console.log("Erro", err);
+            }
+
+            callback();
+        })
+
     }
 
 }

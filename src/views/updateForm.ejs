@@ -1,0 +1,18 @@
+<%- include('./components/header.ejs')%>
+
+<form class="py-3" action="/posts/<%=post.id%>" method="post">
+    <div class="form-group">
+        <label>Título</label>
+        <input type="text" class="form-control" name="title" value="<%=post.title%>">
+    </div>
+    <div class="form-group">
+        <label>Texto</label>
+        <textarea class="form-control" name="description"><%=post.description%></textarea>
+    </div>
+    <input type="hidden" name="id" value="<%=post.id%>"/>
+    <input type="hidden" name="author" value="<%=post.author%>"/>
+    <input type="hidden" name="created_at" value="<%=post.created_at%>"/>
+    <button class="btn btn-outline-primary">Alterar</button>
+</form>
+
+<%-include('./components/footer.ejs')%>

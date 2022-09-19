@@ -26,3 +26,8 @@
     <div class="card text-white bg-primary text-center">
         <div class="card-header"><h3>Blog Trabalho I - WEB II</h3></div>
     </div>
+    <div class="container">
+        <%if(locals.msg){%>
+            <p class="alert alert-success"><%=msg%></p>
+        <%}%>
+    </div>

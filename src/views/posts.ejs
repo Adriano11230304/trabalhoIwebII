@@ -12,8 +12,10 @@
                     <h3><%=posts[i].title%></h3>
                     <br />
                     <h4><%=posts[i].description%></h4>
-                    <a class="btn btn-outline-primary" href="/posts/update/<%=posts.id%>">Alterar</a>
-                    <a class="btn btn-outline-danger" href="/posts/delete/<%=posts.id%>">Excluir</a>
+                    <a class="btn btn-outline-primary" href="/posts/update/<%=posts[i].id%>">Alterar</a>
+                    <a class="btn btn-outline-danger" href="/posts/delete/<%=posts[i].id%>">Excluir</a>
+                    <a class="btn btn-outline-danger" href="/posts/images/<%=posts[i].id%>">Inserir Imagens no Post</a>
+                    <a class="btn btn-outline-danger" href="/posts/images/<%=posts[i].id%>">Alterar Imagens do Post</a>
                     <br/>
                 <%}%>
             <%}%>
