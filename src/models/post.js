@@ -6,18 +6,17 @@ class Post{
     description;
     created_at;
     updated_at;
-    images = [];
 
-    constructor(title, description, created_at, id, images) {
+    constructor(title, description, created_at, id, updated_at) {
         this.title = title;
         this.description = description;
-        this.created_at = this.created_at ? this.created_at : new Date();
+        this.created_at = created_at ? created_at : new Date('now');
+        this.updated_at = updated_at ? updated_at : '';
         this.id = id || 0;
-        images = '';
     }
 
     static listAll() {
-        let sql = 'select * from posts;';
+        let sql = 'select * from posts order by created_at desc;';
         const listagem = [];
         let id, description, title, created_at;
 
@@ -35,12 +34,13 @@ class Post{
                         listagem.push(post);
                     }
                 };
-                
+
                 resolve(listagem);
-                
+            })
+            
         })
-    })
     }
+
 }
 
 module.exports = Post;

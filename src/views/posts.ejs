@@ -1,5 +1,25 @@
 <%- include('./components/header.ejs')%>
 
+    <div class="container">
+        <br />
+        <%if(posts.length==0){%>
+            <h3>Nenhum Post adicionado!</h3>
+            <%}else{%>
+                <%for(let i=0; i < posts.length; i++){%>
+                    <h3>Post <%=posts[i].id%>
+                    </h3>
+                    <h4>Data de criação: <%=posts[i].created_at.getDate()+1%>/<%=posts[i].created_at.getMonth()+1%>/
+                                <%=posts[i].created_at.getFullYear()%>
+                    </h4>
+                    <h4>Título: <%=posts[i].title%>
+                    </h4>
+                    <a class="btn btn-outline-primary" href="/posts/update/<%=posts.id%>">Alterar</a>
+                    <a class="btn btn-outline-danger" href="/posts/delete/<%=posts.id%>">Excluir</a>
+                    <%}%>
+                        <%}%>
+                            <br />
+                            <br />
+                            <a class="btn btn-outline-success" href="/posts/add-post">Adicionar um novo Post</a>
+    </div>
 
-
-<%- include('./components/footer.ejs')%>
+    <%- include('./components/footer.ejs')%>

@@ -15,7 +15,7 @@ app.use('/posts', postRouter);
 app.use(express.static('src/public'));
 
 const source = (req, res) => {
-    res.redirect('/posts');
+    res.redirect('/posts/list');
 }
 
 app.get('/', source);
@@ -24,4 +24,6 @@ const server = () => {
     console.log("Servidor rodando na porta 3000!!!");
 };
 
-app.listen(3000, server);
+const port = '3000';
+
+app.listen(port, server);
