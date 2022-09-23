@@ -27,6 +27,7 @@
                 <div>
                 <a class="btn btn-outline-primary" href="/posts/update/<%=posts[i].id%>">Alterar</a>
                 <a class="btn btn-outline-danger" href="/posts/delete/<%=posts[i].id%>">Excluir</a>
+                <a class="btn btn-outline-primary" href="/posts/images/<%=posts[i].id%>">Visualizar Post</a>
                 <a class="btn btn-outline-primary" href="/posts/images/<%=posts[i].id%>">Inserir Imagens no Post</a>
                 <a class="btn btn-outline-primary" href="/posts/images/<%=posts[i].id%>">Alterar Imagens do Post</a>
                 </div>
@@ -34,8 +35,8 @@
         <%}%>
     <%}%>
     <br/>
-    <a class="btn btn-outline-success m-2" href="/posts/add-post">Adicionar um novo Post</a>
+    <a class="btn btn-outline-success" href="/posts/add-post">Adicionar um novo Post</a>
 </div>
-<p class="text-lg-right m-3">Sistema Desenvolvido por Adriano Alvarenga Pereira</p>
+
 
 <%- include('./components/footer.ejs')%>

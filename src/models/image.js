@@ -42,6 +42,17 @@ class Image{
         })
 
     }
+
+    add(post, callback){
+        let sql = 'insert into images(url, posts_id) values(?, ?);';
+        db.run(sql, [this.url, post.id], (err) => {
+            if (err) {
+                console.log("Erro", err);
+            }
+            callback();   
+
+        })
+    }    
 }
 
 module.exports = Image;

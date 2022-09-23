@@ -7,6 +7,7 @@ class PostController{
         const posts = await Post.listAll();
         const images = await Image.listAll();
         const date = [];
+        console.log({ images });
         for (let i = 0; i < posts.length; i++) {
             date.push(posts[i].getDateFormatter());
         }
@@ -37,11 +38,12 @@ class PostController{
         post.save(async () =>{
             let msg = 'Post cadastrado com sucesso!';
             posts = await Post.listAll();
+            const images = await Image.listAll();
             const date = [];
             for (let i = 0; i < posts.length; i++) {
                 date.push(posts[i].getDateFormatter());
             }
-            res.render('index', { posts, date, msg });
+            res.render('index', { posts, date, msg, images });
         })  
     }
 
@@ -54,8 +56,9 @@ class PostController{
             for (let i = 0; i < posts.length; i++) {
                 date.push(posts[i].getDateFormatter());
             }
+            const images = await Image.listAll();
 
-            res.render('index', { posts, date, msg});
+            res.render('index', { posts, date, msg, images });
         });
 
     }
@@ -63,7 +66,7 @@ class PostController{
     async updateForm(req, res){
         const id = req.params.id;
         const post = await Post.getById(id);
-        console.log({post});
+        
         res.render('updateForm', {post});
     }
 
@@ -86,8 +89,8 @@ class PostController{
             for (let i = 0; i < posts.length; i++) {
                 date.push(posts[i].getDateFormatter());
             }
-
-            res.render('index', { posts, date, msg });
+            const images = await Image.listAll();
+            res.render('index', { posts, date, msg, images });
         });
 
 
