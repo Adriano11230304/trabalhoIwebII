@@ -1,25 +1,27 @@
 const Post = require('../models/post');
+const Image = require('../models/image');
 
 class PostController{
 
     async listAll(req, res){
         const posts = await Post.listAll();
-        // const images = await image.listAll();
+        const images = await Image.listAll();
         const date = [];
         for (let i = 0; i < posts.length; i++) {
             date.push(posts[i].getDateFormatter());
         }
-        res.render('posts', { posts, date });
+        res.render('posts', { posts, date, images });
     }
 
     async list(req, res) {
         const posts = await Post.listAll();
-        // const images = await image.listAll();
+        const images = await Image.listAll();
         const date = [];
         for(let i = 0; i < posts.length; i++){
             date.push(posts[i].getDateFormatter());
         }
-        res.render('index', { posts, date });
+        let d = 0;
+        res.render('index', { posts, date, images, d });
     }
 
     addPost(req, res){

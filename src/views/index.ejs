@@ -10,11 +10,26 @@
                 <h6><%=date[i]%></h6>
                 <hr class="border border-primary border-2 opacity-50">
                 <h3><%=posts[i].title%></h3>
-                <h4><%=posts[i].description%></h4>
-                <a class="btn btn-outline-primary m-2" href="/posts/update/<%=posts[i].id%>">Alterar</a>
-                <a class="btn btn-outline-danger m-2" href="/posts/delete/<%=posts[i].id%>">Excluir</a>
+                <div style="display:inline-block;">
+                
+                <%for(let j = 0; j < images.length; j++){%>
+                    <%if(images[j].posts_id == posts[i].id && d == 0){%>
+                        <div style="float: right;" class="m-2">
+                            <img src="<%=images[j].url%>" width="300" height="250" />
+                        </div>
+                        <%d++%>
+                    <%}%>
+                <%}%>
+                <p class="text-justify">
+                    <%=posts[i].description%>
+                </p>
+                </div>
+                <div>
+                <a class="btn btn-outline-primary" href="/posts/update/<%=posts[i].id%>">Alterar</a>
+                <a class="btn btn-outline-danger" href="/posts/delete/<%=posts[i].id%>">Excluir</a>
                 <a class="btn btn-outline-primary" href="/posts/images/<%=posts[i].id%>">Inserir Imagens no Post</a>
                 <a class="btn btn-outline-primary" href="/posts/images/<%=posts[i].id%>">Alterar Imagens do Post</a>
+                </div>
             <%}%>
         <%}%>
     <%}%>
