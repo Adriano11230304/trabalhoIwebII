@@ -1,0 +1,13 @@
+<%-include('./components/header.ejs')%>
+
+<form class="py-3" action="/posts/images/add" method="post">
+    <div class="form-group">
+        <label>Digite a URL da imagem</label>
+        <input type="text" class="form-control" name="image" placeholder="Digite a URL da imagem">
+    </div>
+    <input type="hidden" name="post" value="<%=post%>"/>
+    <button class="btn btn-outline-primary m-1">Adicionar imagem</button>  
+</form>
+
+        
+<%-include('./components/footer.ejs')%>

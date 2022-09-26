@@ -5,6 +5,7 @@
         <h3>Nenhum Post adicionado!</h3>
     <%}else{%>
         <%for(let i = 0; i < posts.length; i++){%>
+            <%d=0%>
             <%if(i < 6){%>
                 <hr class="border border-primary border-2 opacity-50">
                 <h6><%=date[i]%></h6>
@@ -27,9 +28,9 @@
                 <div>
                 <a class="btn btn-outline-primary" href="/posts/update/<%=posts[i].id%>">Alterar</a>
                 <a class="btn btn-outline-danger" href="/posts/delete/<%=posts[i].id%>">Excluir</a>
-                <a class="btn btn-outline-primary" href="/posts/images/<%=posts[i].id%>">Visualizar Post</a>
-                <a class="btn btn-outline-primary" href="/posts/images/<%=posts[i].id%>">Inserir Imagens no Post</a>
-                <a class="btn btn-outline-primary" href="/posts/images/<%=posts[i].id%>">Alterar Imagens do Post</a>
+                <a class="btn btn-outline-primary" href="/posts/posts/<%=posts[i].id%>">Visualizar Post</a>
+                <a class="btn btn-outline-primary" href="/posts/images/add/<%=posts[i].id%>">Inserir Imagens no Post</a>
+                <a class="btn btn-outline-primary" href="/posts/images/update/<%=posts[i].id%>">Alterar Imagens do Post</a>
                 </div>
             <%}%>
         <%}%>

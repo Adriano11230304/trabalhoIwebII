@@ -5,12 +5,13 @@ class PostController{
 
     async listAll(req, res){
         const posts = await Post.listAll();
-        const images = await Image.listAll();
+        const images = Image.listAll();
         const date = [];
         console.log({ images });
         for (let i = 0; i < posts.length; i++) {
             date.push(posts[i].getDateFormatter());
         }
+        let d = 0;
         res.render('posts', { posts, date, images });
     }
 
@@ -38,12 +39,13 @@ class PostController{
         post.save(async () =>{
             let msg = 'Post cadastrado com sucesso!';
             posts = await Post.listAll();
-            const images = await Image.listAll();
+            const images = Image.listAll();
             const date = [];
             for (let i = 0; i < posts.length; i++) {
                 date.push(posts[i].getDateFormatter());
             }
-            res.render('index', { posts, date, msg, images });
+            let d = 0;
+            res.render('index', { posts, date, msg, images, d });
         })  
     }
 
@@ -56,9 +58,10 @@ class PostController{
             for (let i = 0; i < posts.length; i++) {
                 date.push(posts[i].getDateFormatter());
             }
-            const images = await Image.listAll();
+            const images = Image.listAll();
 
-            res.render('index', { posts, date, msg, images });
+            let d = 0;
+            res.render('index', { posts, date, msg, images, d });
         });
 
     }
@@ -89,11 +92,17 @@ class PostController{
             for (let i = 0; i < posts.length; i++) {
                 date.push(posts[i].getDateFormatter());
             }
-            const images = await Image.listAll();
-            res.render('index', { posts, date, msg, images });
+            const images = Image.listAll();
+            let d = 0;
+            res.render('index', { posts, date, msg, images, d });
         });
 
 
+    }
+
+    postDetails(req, res){
+        console.log('detalhando um Post');
+        res.end('detalhando um Post!');
     }
     
 };

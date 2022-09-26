@@ -5,7 +5,7 @@ class Image{
     url;
     post;
 
-    constructor(id, url, post){
+    constructor(url, post, id){
         this.id = id ? id : 0;
         this.url = url;
         this.post = post;
@@ -45,7 +45,10 @@ class Image{
 
     add(post, callback){
         let sql = 'insert into images(url, posts_id) values(?, ?);';
-        db.run(sql, [this.url, post.id], (err) => {
+        console.log(post);
+        console.log(this.post.id);
+        callback();
+        db.run(sql, [this.url, post], (err) => {
             if (err) {
                 console.log("Erro", err);
             }

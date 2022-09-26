@@ -14,7 +14,7 @@ class Post{
         this.author = author;
         this.created_at = created_at ? created_at : new Date();
         this.updated_at = updated_at ? updated_at : '';
-        this.id = id || 0;
+        this.id = id ? id : 0;
     }
 
     static listAll() {
