@@ -5,7 +5,7 @@ class PostController{
 
     async listAll(req, res){
         const posts = await Post.listAll();
-        const images = Image.listAll();
+        const images = await Image.listAll();
         const date = [];
         console.log({ images });
         for (let i = 0; i < posts.length; i++) {
@@ -33,18 +33,21 @@ class PostController{
     async add(req, res){
         const date = new Date();
         const offset = date.getTimezoneOffset();
-        const created_at = date - offset;
+        const created_at = date - offset;  
         const post = new Post(req.body.title, req.body.description, req.body.author, created_at);
         let posts = await Post.listAll();
         post.save(async () =>{
             let msg = 'Post cadastrado com sucesso!';
             posts = await Post.listAll();
-            const images = Image.listAll();
+            
             const date = [];
             for (let i = 0; i < posts.length; i++) {
                 date.push(posts[i].getDateFormatter());
             }
             let d = 0;
+            const image = new Image(req.body.url, posts[0]);
+            image.add(async () => {})
+            const images = await Image.listAll();
             res.render('index', { posts, date, msg, images, d });
         })  
     }
@@ -58,7 +61,7 @@ class PostController{
             for (let i = 0; i < posts.length; i++) {
                 date.push(posts[i].getDateFormatter());
             }
-            const images = Image.listAll();
+            const images = await Image.listAll();
 
             let d = 0;
             res.render('index', { posts, date, msg, images, d });

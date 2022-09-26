@@ -43,12 +43,9 @@ class Image{
 
     }
 
-    add(post, callback){
+    add(callback){
         let sql = 'insert into images(url, posts_id) values(?, ?);';
-        console.log(post);
-        console.log(this.post.id);
-        callback();
-        db.run(sql, [this.url, post], (err) => {
+        db.run(sql, [this.url, this.post.id], (err) => {
             if (err) {
                 console.log("Erro", err);
             }

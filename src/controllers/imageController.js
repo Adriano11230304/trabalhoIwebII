@@ -19,7 +19,7 @@ class imageController{
         const post = await Post.getById(req.body.post);
         const url = req.body.image;
         const image = new Image(url, post);
-        image.add(req.body.post, async () => {
+        image.add(async () => {
             let msg = 'Imagem cadastrada com sucesso!';
             const posts = await Post.listAll();
             const images = await Image.listAll();
