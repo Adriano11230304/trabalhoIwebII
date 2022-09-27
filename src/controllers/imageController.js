@@ -2,12 +2,6 @@ const Image = require('../models/image');
 const Post = require('../models/post');
 
 class imageController{
-    async list(req, res){
-        const post = await Post.getById(1);
-        const images = await Image.listAllId(post);
-
-        res.render('imagesPost', { images });
-    }
 
     addForm(req, res){
         const post = req.params.id;
@@ -35,6 +29,17 @@ class imageController{
     updateForm(req, res) {
         console.log('alterando imagem!');
         res.end('alterando imagem!');
+    }
+
+    async delete(req, res){
+        const id = req.params.id;
+        const post = await Post.getById(req.params.post);
+        Image.delete(id, async () => {
+            const images = await Image.listAllId(post);
+            const date = post.getDateFormatter();
+            let msg = 'imagem deletada com sucesso!';
+            res.render('postDetails', {images, post, date, msg});
+        })
     }
 }
 

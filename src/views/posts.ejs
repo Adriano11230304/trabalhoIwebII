@@ -8,15 +8,16 @@
                     <hr class="border border-primary border-2 opacity-50">
                     <h6><%=date[i]%></h6>
                     <hr class="border border-primary border-2 opacity-50">
-                    <h3><%=posts[i].title%></h3>
                     <div>
+                    <h3><%=posts[i].title%></h3>
                         <%for(let j=0; j < images.length; j++){%>
                             <%if(images[j].posts_id==posts[i].id){%>
-                                <div style="float: right;" class="m-2">
-                                    <img src="<%=images[j].url%>" width="300" height="250" />
+                                <div class="float-right m-1">
+                                    <img src="<%=images[j].url%>" width="250" height="250" />
                                 </div>
                             <%}%>
                         <%}%>
+                        
                         <p class="text-justify">
                             <%=posts[i].description%>
                         </p>
@@ -24,9 +25,8 @@
                     <div>
                     <a class="btn btn-outline-primary" href="/posts/update/<%=posts[i].id%>">Alterar</a>
                     <a class="btn btn-outline-danger" href="/posts/delete/<%=posts[i].id%>">Excluir</a>
-                    <a class="btn btn-outline-primary" href="/posts/images/<%=posts[i].id%>">Visualizar Post</a>
-                    <a class="btn btn-outline-primary" href="/posts/images/<%=posts[i].id%>">Inserir Imagens no Post</a>
-                    <a class="btn btn-outline-primary" href="/posts/images/<%=posts[i].id%>">Alterar Imagens do Post</a>
+                    <a class="btn btn-outline-primary" href="/posts/posts/<%=posts[i].id%>">Visualizar Post</a>
+                    <a class="btn btn-outline-primary" href="/posts/images/add/<%=posts[i].id%>">Inserir Imagens no Post</a>
                     </div>
                 <%}%>
             <%}%>

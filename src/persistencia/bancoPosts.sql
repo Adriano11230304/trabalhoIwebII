@@ -6,8 +6,7 @@ CREATE TABLE posts(
     title VARCHAR(300),
     description VARCHAR(500) NOT NULL,
     author VARCHAR(200),
-    created_at date NOT NULL,
-    updated_at date
+    created_at date NOT NULL
 );
 
 CREATE TABLE images(
@@ -16,5 +15,3 @@ CREATE TABLE images(
     posts_id INTEGER NOT NULL,
     FOREIGN KEY(posts_id) references posts(id)
 );
-
-/*INSERT INTO images(url, posts_id) VALUES('https://s1.1zoom.me/big0/703/Planets_Trees_Night_576489_1280x800.jpg', 17);*/

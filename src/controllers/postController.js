@@ -1,5 +1,6 @@
 const Post = require('../models/post');
 const Image = require('../models/image');
+const { listAll } = require('../models/post');
 
 class PostController{
 
@@ -7,7 +8,7 @@ class PostController{
         const posts = await Post.listAll();
         const images = await Image.listAll();
         const date = [];
-        console.log({ images });
+        
         for (let i = 0; i < posts.length; i++) {
             date.push(posts[i].getDateFormatter());
         }
@@ -54,6 +55,9 @@ class PostController{
 
     remove(req, res){
         const id = req.params.id;
+        Image.deleteAllPostId(id, ()=>{
+
+        });
         Post.delete(id, async () => {
             let msg = 'Post removido com sucesso!';
             const posts = await Post.listAll();
@@ -77,25 +81,21 @@ class PostController{
     }
 
     update(req,res){
-        let id, title, description, author, created_at, updated_at;
-        console.log(req.body);
-        const date = new Date();
-        const offset = date.getTimezoneOffset();
-        updated_at = date - offset;
+        let id, title, description, author, created_at;
         id = req.body.id;
         title = req.body.title;
         description = req.body.description;
         author = req.body.author;
         created_at = req.body.created_at;
-        const post = new Post(title, description, author, created_at, id, updated_at);
+        const post = new Post(title, description, author, created_at, id);
         post.update(async () => {
             let msg = 'Post alterado com sucesso!';
             const posts = await Post.listAll();
             const date = [];
-            for (let i = 0; i < posts.length; i++) {
+            for (let i = 0; i < posts.length; i++) {      
                 date.push(posts[i].getDateFormatter());
             }
-            const images = Image.listAll();
+            const images = await Image.listAll();
             let d = 0;
             res.render('index', { posts, date, msg, images, d });
         });
@@ -103,9 +103,11 @@ class PostController{
 
     }
 
-    postDetails(req, res){
-        console.log('detalhando um Post');
-        res.end('detalhando um Post!');
+    async postDetails(req, res){
+        const post = await Post.getById(req.params.id);
+        const images = await Image.listAllId(post);
+        const date = post.getDateFormatter();
+        res.render('postDetails', {post, images, date});
     }
     
 };

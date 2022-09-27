@@ -1,4 +1,5 @@
 const db = require("../persistencia/configDB");
+const Post = require('./post');
 
 class Image{
     id;
@@ -52,7 +53,61 @@ class Image{
             callback();   
 
         })
-    }    
+    }
+
+    static deleteAllPostId(id, callback){
+        let sql = 'delete from images where posts_id = ?;';
+        db.run(sql, [id], (err) => {
+            if (err) {
+                console.log("Erro", err);
+            }
+
+            callback();
+        });
+    }
+    
+    static delete(id, callback) {
+        let sql = 'delete from images where id = ?;';
+        db.run(sql, [id], (err) => {
+            if (err) {
+                console.log("Erro", err);
+            }
+
+            callback();
+        });
+    }
+
+    update(callback) {
+        let sql = 'UPDATE images SET url = ? WHERE id = ?;';
+        db.run(sql, [this.url, this.id], (err) => {
+            if (err) {
+                console.log("Erro", err);
+            }
+
+            callback();
+        })
+
+    }
+
+    static getById(id) {
+        let sql = 'select * from images where id = ?;';
+        return new Promise((resolve, reject) => {
+            db.all(sql, [id], async (err, rows) => {
+                if (err) {
+                    console.log('Erro', err);
+                } else {
+                    let id = rows[0].id;
+                    let url = rows[0].url;
+                    let posts = await Post.getById(rows[0].posts_id);
+                    const image = new Image(url, post, id);
+
+                    resolve(image);
+                }
+
+            })
+        })
+    }
+
 }
 
 module.exports = Image;

@@ -20,10 +20,9 @@ postRouter.get('/posts/:id', postController.postDetails);
 
 
 // Rotas para as imagens
-postRouter.get('/images/:id', imageController.list);
-postRouter.get('/images/update/:id', imageController.updateForm);
 postRouter.get('/images/add/:id', imageController.addForm);
 postRouter.post('/images/add', imageController.add);
+postRouter.get('/images/delete/:post/:id', imageController.delete);
 
 
 

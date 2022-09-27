@@ -6,14 +6,12 @@ class Post{
     description;
     author;
     created_at;
-    updated_at;
 
-    constructor(title, description, author, created_at, id, updated_at) {
+    constructor(title, description, author, created_at, id) {
         this.title = title;
         this.description = description;
         this.author = author;
         this.created_at = created_at ? created_at : new Date();
-        this.updated_at = updated_at ? updated_at : '';
         this.id = id ? id : 0;
     }
 
@@ -51,8 +49,13 @@ class Post{
                 if(err){
                     console.log('Erro', err);
                 }else{
-                    const post = rows[0];
-                    
+                    let id = rows[0].id;
+                    let title = rows[0].title;
+                    let description = rows[0].description;
+                    let created_at = new Date(rows[0].created_at);
+                    let author = rows[0].author;
+                    const post = new Post(title, description, author, created_at, id)
+
                     resolve(post);
                 }
                 
@@ -95,8 +98,8 @@ class Post{
     }
 
     update(callback){
-        let sql = 'UPDATE posts SET title = ?, description = ?, updated_at = ? WHERE id = ?;';
-        db.run(sql, [this.title, this.description, this.updated_at, this.id], (err) => {
+        let sql = 'UPDATE posts SET title = ?, description = ? WHERE id = ?;';
+        db.run(sql, [this.title, this.description, this.id], (err) => {
             if (err) {
                 console.log("Erro", err);
             }

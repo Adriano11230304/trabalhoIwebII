@@ -1,0 +1,34 @@
+<%- include('./components/header.ejs')%>
+
+    <div class="container">
+    <hr class="border border-primary border-2 opacity-50">
+        <h6>
+            <%=date%>
+        </h6>
+    <hr class="border border-primary border-2 opacity-50">
+    <h3>
+        <%=post.title%>
+    </h3>
+    <div>
+    <p class="text-justify">
+        <%=post.description%>
+    </p>
+    </div>
+    <%for(let j=0; j < images.length; j++){%>
+    
+        <div>
+            <img src="<%=images[j].url%>" class='m-1' width="300" height="250" />
+            <a class="btn btn-outline-danger" href="/posts/images/delete/<%=post.id%>/<%=images[j].id%>">Deletar Imagem do Post</a>
+        </div>
+        <%}%>
+    <div>
+    <a class="btn btn-outline-primary" href="/posts/update/<%=post.id%>">Alterar</a>
+    <a class="btn btn-outline-danger" href="/posts/delete/<%=post.id%>">Excluir</a>
+    <a class="btn btn-outline-primary" href="/posts/images/add/<%=post.id%>">Inserir Imagens no Post</a>
+    </div>
+    <br />
+    <a class="btn btn-outline-success" href="/posts/add-post">Adicionar um novo Post</a>
+    </div>
+
+
+    <%- include('./components/footer.ejs')%>
