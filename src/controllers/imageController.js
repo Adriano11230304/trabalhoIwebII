@@ -26,11 +26,6 @@ class imageController{
         })
     }
 
-    updateForm(req, res) {
-        console.log('alterando imagem!');
-        res.end('alterando imagem!');
-    }
-
     async delete(req, res){
         const id = req.params.id;
         const post = await Post.getById(req.params.post);

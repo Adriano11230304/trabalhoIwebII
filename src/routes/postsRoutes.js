@@ -13,7 +13,6 @@ postRouter.get('/add-post', postController.addPost);
 postRouter.get('/delete/:id', postController.remove);
 postRouter.get('/update/:id', postController.updateForm);
 postRouter.post('/:id', postController.update);
-
 postRouter.post('/', postController.add);
 postRouter.get('/', postController.listAll);
 postRouter.get('/posts/:id', postController.postDetails);

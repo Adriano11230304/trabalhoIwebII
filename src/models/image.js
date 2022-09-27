@@ -77,18 +77,6 @@ class Image{
         });
     }
 
-    update(callback) {
-        let sql = 'UPDATE images SET url = ? WHERE id = ?;';
-        db.run(sql, [this.url, this.id], (err) => {
-            if (err) {
-                console.log("Erro", err);
-            }
-
-            callback();
-        })
-
-    }
-
     static getById(id) {
         let sql = 'select * from images where id = ?;';
         return new Promise((resolve, reject) => {
