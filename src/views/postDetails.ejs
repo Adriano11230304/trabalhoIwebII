@@ -14,13 +14,26 @@
         <%=post.description%>
     </p>
     </div>
+    <table>
+    <thead>
     <%for(let j=0; j < images.length; j++){%>
-    
-        <div>
-            <img src="<%=images[j].url%>" class='m-1' width="300" height="250" />
-            <a class="btn btn-outline-danger" href="/posts/images/delete/<%=post.id%>/<%=images[j].id%>">Deletar Imagem do Post</a>
-        </div>
+        
+            <tr>
+            <img src="<%=images[j].url%>" class='m-1' width="190" height="190" />
+            </tr>
+        
         <%}%>
+        </thead>
+        <tbody>
+        <%for(let j=0; j < images.length; j++){%>
+            
+                <td>
+                    <a class="btn btn-outline-danger" href="/posts/images/delete/<%=post.id%>/<%=images[j].id%>">Deletar Imagem do Post</a>
+                </td>
+            
+        <%}%>
+        </tbody>
+        </table>
     <div>
     <a class="btn btn-outline-primary" href="/posts/update/<%=post.id%>">Alterar Post</a>
     <a class="btn btn-outline-danger" href="/posts/delete/<%=post.id%>">Excluir Post</a>
