@@ -1,36 +1,49 @@
 <%- include('./components/header.ejs')%>
 
-<div class="container">
+<div>
     <%if(posts.length == 0){%>
         <h3>Nenhum Post adicionado!</h3>
     <%}else{%>
         <%for(let i = 0; i < posts.length; i++){%>
             <%d=0%>
-            <%if(i < 6){%>
+            <%if(i < 5){%>
                 <hr class="border border-primary border-2 opacity-50">
-                <h6><%=date[i]%></h6>
+                <h6 class="m-2"><%=date[i]%></h6>
                 <hr class="border border-primary border-2 opacity-50">
+                <div class="flex-container m-2">
                 <h3><%=posts[i].title%></h3>
-                <div>
+                </div>
+                <div class="flex-container m-2">
+                <a class="btn btn-outline-primary m-2" href="/posts/add-post">
+                    <img src="/img/adicionar.png" title="Inserir um novo Post" width="25" height="25">
+                </a>
+                <a class="btn btn-outline-primary m-2" href="/posts/update/<%=posts[i].id%>">
+                    <img src="/img/editar.png" title="Alterar o Post" width="25" height="25"> 
+                </a>
+                <a class="btn btn-outline-primary m-2" href="/posts/delete/<%=posts[i].id%>">
+                    <img src="/img/excluir.png" title="Excluir o Post" width="25" height="25">
+                </a>
+                <a class="btn btn-outline-primary m-2" href="/posts/posts/<%=posts[i].id%>">
+                    <img src="/img/visualizar.png" title="Visualizar o Post" width="25" height="25">
+                </a>
+                <a class="btn btn-outline-primary m-2" href="/posts/images/add/<%=posts[i].id%>">
+                    <img src="/img/imagem.png" title="Inserir imagem a esse Post" width="25" height="25">
+                </a>
+                </div>
                 
-                <%for(let j = 0; j < images.length; j++){%>
-                    <%if(images[j].posts_id == posts[i].id && d == 0){%>
-                        <div style="float: right;" class="m-2">
-                            <img src="<%=images[j].url%>" width="300" height="250" />
-                        </div>
-                        <%d++%>
-                    <%}%>
-                <%}%>
-                <p class="text-justify">
-                    <%=posts[i].description%>
-                </p>
+                <div class="flex-container m-2">    
+                    <p class="text-justify">
+                        <%=posts[i].description%>
+                    </p>
                 </div>
-                <div>
-                <a class="btn btn-outline-primary" href="/posts/update/<%=posts[i].id%>">Alterar Post</a>
-                <a class="btn btn-outline-danger" href="/posts/delete/<%=posts[i].id%>">Excluir Post</a>
-                <a class="btn btn-outline-primary" href="/posts/posts/<%=posts[i].id%>">Visualizar Post</a>
-                <a class="btn btn-outline-primary" href="/posts/images/add/<%=posts[i].id%>">Inserir Imagens no Post</a>
-                </div>
+                    <%for(let j = 0; j < images.length; j++){%>
+                        <%if(images[j].posts_id == posts[i].id && d == 0){%>
+                            <div class="flex-center m-2">
+                                <img src="<%=images[j].url%>" width="600" height="300" />
+                            </div>
+                            <%d++%>
+                        <%}%>
+                    <%}%>   
             <%}%>
         <%}%>
     <%}%>
