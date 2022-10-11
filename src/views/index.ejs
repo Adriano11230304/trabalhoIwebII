@@ -1,12 +1,16 @@
 <%- include('./components/header.ejs')%>
-
+<div class="flex-center m-2">
+    <form class="form-inline" method="post" action="/posts/search">
+        <input class="form-control" type="text" name="search" placeholder="Search">
+        <button type="submit" class="btn btn-outline-dark m-2"><img src="/img/excluir.png" title="Pesquise pelo título do Post" width="25" height="25"></button>
+    </form>
+</div>
 <div>
     <%if(posts.length == 0){%>
-        <h3>Nenhum Post adicionado!</h3>
+        <h3>Nenhum Post encontrado!</h3>
     <%}else{%>
         <%for(let i = 0; i < posts.length; i++){%>
             <%d=0%>
-            <%if(i < 5){%>
                 <hr class="border border-primary border-2 opacity-50">
                 <h6 class="m-2"><%=date[i]%></h6>
                 <hr class="border border-primary border-2 opacity-50">
@@ -14,19 +18,19 @@
                 <h3><%=posts[i].title%></h3>
                 </div>
                 <div class="flex-container m-2">
-                <a class="btn btn-outline-primary m-2" href="/posts/add-post">
+                <a class="btn btn-outline-dark m-2" href="/posts/add-post">
                     <img src="/img/adicionar.png" title="Inserir um novo Post" width="25" height="25">
                 </a>
-                <a class="btn btn-outline-primary m-2" href="/posts/update/<%=posts[i].id%>">
+                <a class="btn btn-outline-dark m-2" href="/posts/update/<%=posts[i].id%>">
                     <img src="/img/editar.png" title="Alterar o Post" width="25" height="25"> 
                 </a>
-                <a class="btn btn-outline-primary m-2" href="/posts/delete/<%=posts[i].id%>">
+                <a class="btn btn-outline-dark m-2" href="/posts/delete/<%=posts[i].id%>">
                     <img src="/img/excluir.png" title="Excluir o Post" width="25" height="25">
                 </a>
-                <a class="btn btn-outline-primary m-2" href="/posts/posts/<%=posts[i].id%>">
+                <a class="btn btn-outline-dark m-2" href="/posts/posts/<%=posts[i].id%>">
                     <img src="/img/visualizar.png" title="Visualizar o Post" width="25" height="25">
                 </a>
-                <a class="btn btn-outline-primary m-2" href="/posts/images/add/<%=posts[i].id%>">
+                <a class="btn btn-outline-dark m-2" href="/posts/images/add/<%=posts[i].id%>">
                     <img src="/img/imagem.png" title="Inserir imagem a esse Post" width="25" height="25">
                 </a>
                 </div>
@@ -43,12 +47,89 @@
                             </div>
                             <%d++%>
                         <%}%>
-                    <%}%>   
-            <%}%>
+                    <%}%>
         <%}%>
     <%}%>
-    <br/>
-    <a class="btn btn-outline-success" href="/posts/add-post">Adicionar um novo Post</a>
+</div>
+<div class="flex-center">
+    <% if(totalPosts.length < 6){%>
+        <a class="m-2" href="/posts/1">1</a>
+    <%}else if(totalPosts.length < 11){%>
+        <a class="m-2" href="/posts/1">1</a>
+        <a class="m-2" href="/posts/2">2</a>
+    <%}else if(totalPosts.length < 16){%>
+        <a class="m-2" href="/posts/1">1</a>
+        <a class="m-2" href="/posts/2">2</a>
+        <a class="m-2" href="/posts/3">3</a>
+    <%}else if(totalPosts.length < 21){%>
+        <a class="m-2" href="/posts/1">1</a>
+        <a class="m-2" href="/posts/2">2</a>
+        <a class="m-2" href="/posts/3">3</a>
+        <a class="m-2" href="/posts/4">4</a>
+    <%}else if(totalPosts.length < 26){%>
+        <a class="m-2" href="/posts/1">1</a>
+        <a class="m-2" href="/posts/2">2</a>
+        <a class="m-2" href="/posts/3">3</a>
+        <a class="m-2" href="/posts/4">4</a>
+        <a class="m-2" href="/posts/5">5</a>
+    <%}else if(totalPosts.length < 31){%>
+        <a class="m-2" href="/posts/1">1</a>
+        <a class="m-2" href="/posts/2">2</a>
+        <a class="m-2" href="/posts/3">3</a>
+        <a class="m-2" href="/posts/4">4</a>
+        <a class="m-2" href="/posts/5">5</a>
+        <a class="m-2" href="/posts/6">6</a>
+    <%}else if(totalPosts.length < 36){%>
+        <a class="m-2" href="/posts/1">1</a>
+        <a class="m-2" href="/posts/2">2</a>
+        <a class="m-2" href="/posts/3">3</a>
+        <a class="m-2" href="/posts/4">4</a>
+        <a class="m-2" href="/posts/5">5</a>
+        <a class="m-2" href="/posts/6">6</a>
+        <a class="m-2" href="/posts/7">7</a>
+    <%}else if(totalPosts.length < 41){%>
+        <a class="m-2" href="/posts/1">1</a>
+        <a class="m-2" href="/posts/2">2</a>
+        <a class="m-2" href="/posts/3">3</a>
+        <a class="m-2" href="/posts/4">4</a>
+        <a class="m-2" href="/posts/5">5</a>
+        <a class="m-2" href="/posts/6">6</a>
+        <a class="m-2" href="/posts/7">7</a>
+        <a class="m-2" href="/posts/8">8</a>
+    <%}else if(totalPosts.length < 46){%>
+        <a class="m-2" href="/posts/1">1</a>
+        <a class="m-2" href="/posts/2">2</a>
+        <a class="m-2" href="/posts/3">3</a>
+        <a class="m-2" href="/posts/4">4</a>
+        <a class="m-2" href="/posts/5">5</a>
+        <a class="m-2" href="/posts/6">6</a>
+        <a class="m-2" href="/posts/7">7</a>
+        <a class="m-2" href="/posts/8">8</a>
+        <a class="m-2" href="/posts/9">9</a>
+    <%}else if(totalPosts.length < 51){%>
+        <a class="m-2" href="/posts/1">1</a>
+        <a class="m-2" href="/posts/2">2</a>
+        <a class="m-2" href="/posts/3">3</a>
+        <a class="m-2" href="/posts/4">4</a>
+        <a class="m-2" href="/posts/5">5</a>
+        <a class="m-2" href="/posts/6">6</a>
+        <a class="m-2" href="/posts/7">7</a>
+        <a class="m-2" href="/posts/8">8</a>
+        <a class="m-2" href="/posts/9">9</a>
+        <a class="m-2" href="/posts/10">10</a>
+    <%}else if(totalPosts.length < 56){%>
+        <a class="m-2" href="/posts/1">1</a>
+        <a class="m-2" href="/posts/2">2</a>
+        <a class="m-2" href="/posts/3">3</a>
+        <a class="m-2" href="/posts/4">4</a>
+        <a class="m-2" href="/posts/5">5</a>
+        <a class="m-2" href="/posts/6">6</a>
+        <a class="m-2" href="/posts/7">7</a>
+        <a class="m-2" href="/posts/8">8</a>
+        <a class="m-2" href="/posts/9">9</a>
+        <a class="m-2" href="/posts/10">10</a>
+        <a class="m-2" href="/posts/11">11</a>
+    <%}%>
 </div>
 
 

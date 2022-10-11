@@ -8,14 +8,18 @@ const postController = new PostController;
 const ImageController = require('../controllers/imageController');
 const imageController = new ImageController;
 
-postRouter.get('/list', postController.list);
+// postRouter.get('/list', postController.list);
+postRouter.post('/search', postController.search);
+postRouter.get('/posts/:id', postController.postDetails);
 postRouter.get('/add-post', postController.addPost);
 postRouter.get('/delete/:id', postController.remove);
 postRouter.get('/update/:id', postController.updateForm);
 postRouter.post('/:id', postController.update);
 postRouter.post('/', postController.add);
-postRouter.get('/', postController.listAll);
-postRouter.get('/posts/:id', postController.postDetails);
+postRouter.get('/', postController.list);
+postRouter.get('/:page', postController.list);
+
+
 
 
 // Rotas para as imagens

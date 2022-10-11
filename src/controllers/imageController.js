@@ -15,14 +15,15 @@ class imageController{
         const image = new Image(url, post);
         image.add(async () => {
             let msg = 'Imagem cadastrada com sucesso!';
-            const posts = await Post.listAll();
+            const posts = await Post.listAll(0);
             const images = await Image.listAll();
             const date = [];
             for (let i = 0; i < posts.length; i++) {
                 date.push(posts[i].getDateFormatter());
             }
             let d = 0;
-            res.render('index', { posts, date, msg, images, d });
+            const totalPosts = await Post.list();
+            res.render('index', { posts, totalPosts, date, msg, images, d });
         })
     }
 

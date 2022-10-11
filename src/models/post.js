@@ -15,7 +15,35 @@ class Post{
         this.id = id ? id : 0;
     }
 
-    static listAll() {
+    static listAll(offset) {
+        let sql = 'select * from posts order by created_at desc LIMIT 5 OFFSET ?;';
+        const listagem = [];
+        let id, description, title, author, created_at;
+
+        return new Promise((resolve, reject) => {
+            db.all(sql, [offset], (err, rows) => {
+                if (err) {
+                    console.log(err.message);
+                } else {
+                    for (let i = 0; i < rows.length; i++) {
+                        id = rows[i].id;
+                        description = rows[i].description;
+                        title = rows[i].title;
+                        author = rows[i].author;
+                        created_at = new Date(rows[i].created_at);
+                        let post = new Post(title, description, author, created_at, id);
+                        listagem.push(post);
+                    }
+                };
+
+                resolve(listagem);
+            })
+            
+        })
+    }
+
+    static list() {
+        
         let sql = 'select * from posts order by created_at desc;';
         const listagem = [];
         let id, description, title, author, created_at;
@@ -38,26 +66,29 @@ class Post{
 
                 resolve(listagem);
             })
-            
+
         })
     }
 
     static getById(id){
         let sql = 'select * from posts where id = ?;';
+        let id1, title, description, created_at, author, post;
         return new Promise((resolve, reject) => {
             db.all(sql, [id], (err, rows)=> {
                 if(err){
                     console.log('Erro', err);
                 }else{
-                    let id = rows[0].id;
-                    let title = rows[0].title;
-                    let description = rows[0].description;
-                    let created_at = new Date(rows[0].created_at);
-                    let author = rows[0].author;
-                    const post = new Post(title, description, author, created_at, id)
-
-                    resolve(post);
+                    
+                    id1 = rows[0].id;
+                    title = rows[0].title;
+                    description = rows[0].description;
+                    created_at = new Date(rows[0].created_at);
+                    author = rows[0].author;
+                    post = new Post(title, description, author, created_at, id1)
+                    
                 }
+
+                resolve(post);
                 
             })
         })
@@ -107,6 +138,32 @@ class Post{
             callback();
         })
 
+    }
+
+    static search(search){
+        let sql = "select * from posts where title like ?;";
+        let id, title, description, created_at, author, post;
+        let searchall = '%' + search + '%';
+        const listagem = [];
+        return new Promise((resolve, reject) => {
+            db.all(sql, [searchall], (err, rows) => {
+                if(rows){
+                    // console.log(rows);
+                    for (let i = 0; i < rows.length; i++) {
+                        id = rows[i].id;
+                        description = rows[i].description;
+                        title = rows[i].title;
+                        author = rows[i].author;
+                        created_at = new Date(rows[i].created_at);
+                        let post = new Post(title, description, author, created_at, id);
+                        listagem.push(post);
+                    }
+                }
+
+                resolve(listagem);
+
+            })
+        })
     }
 
 }

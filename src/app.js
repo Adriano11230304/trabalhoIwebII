@@ -15,7 +15,7 @@ app.use('/posts', postRouter);
 app.use(express.static('src/public'));
 
 const source = (req, res) => {
-    res.redirect('/posts/list');
+    res.redirect('/posts');
 }
 
 app.get('/', source);
